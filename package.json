@@ -39,11 +39,11 @@
   },
   "scripts": {
     "build": "babel src -d bundle",
-    "codecov": "codecov",
-    "coverage": "NODE_ENV=test NODE_PATH=src nyc report --recursive",
+    "codecov": "NODE_ENV=test NODE_PATH=src nyc mocha report --reporter=text-lcov > coverage.lcov --recursive && codecov",
+    "coverage": "NODE_ENV=test NODE_PATH=src nyc mocha --recursive",
     "dev": "npm test -- --watch",
     "lint": "eslint src test",
-    "test": "NODE_ENV=test NODE_PATH=src nyc mocha --recursive"
+    "test": "NODE_ENV=test NODE_PATH=src mocha --compilers js:babel-register --recursive"
   },
   "author": "Team Wattellina <wattellina@mondora.com>",
   "license": "Apache-2.0"
