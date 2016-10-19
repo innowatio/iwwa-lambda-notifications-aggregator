@@ -2,7 +2,7 @@ import {expect} from "chai";
 import sinon from "sinon";
 
 import {handler} from "index";
-import {mongodb} from "services/mongodb";
+import {getMongoClient} from "services/mongodb";
 import {run, getEventFromObject} from "../mocks";
 
 const notificationElement = {
@@ -23,7 +23,7 @@ describe("On notification event", () => {
     const date = new Date("2016-08-31").getTime();
 
     before(async () => {
-        db = await mongodb;
+        db = await getMongoClient();
         clock = sinon.useFakeTimers(date);
         await db.createCollection("notifications");
         notificationsCollection = db.collection("notifications");

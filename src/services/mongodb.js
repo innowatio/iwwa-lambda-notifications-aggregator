@@ -2,4 +2,11 @@ import {MongoClient} from "mongodb";
 
 import {MONGODB_URL} from "../config";
 
-export const mongodb = MongoClient.connect(MONGODB_URL);
+var mongoClientInstance;
+
+export async function getMongoClient () {
+    if (!mongoClientInstance) {
+        mongoClientInstance = await MongoClient.connect(MONGODB_URL);
+    }
+    return mongoClientInstance;
+}

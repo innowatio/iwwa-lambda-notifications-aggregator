@@ -2,7 +2,7 @@ import {map} from "bluebird";
 import {isEmpty, partial} from "ramda";
 
 import log from "./services/logger";
-import {mongodb} from "./services/mongodb";
+import {getMongoClient} from "./services/mongodb";
 import upsertNotifications from "./steps/upsert-notifications";
 
 export default async function pipeline (event) {
@@ -16,7 +16,7 @@ export default async function pipeline (event) {
     if (isEmpty(usersId)) {
         return null;
     }
-    const db = await mongodb;
+    const db = await getMongoClient();
     await map(usersId, partial(upsertNotifications, [element, id, db]));
     return null;
 }
