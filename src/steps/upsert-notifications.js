@@ -6,7 +6,7 @@ function getNotification (notification, id, userId) {
         type: notification.type,
         title: notification.title,
         message: notification.message,
-        data: notification.data,
+        data: notification.data || {},
         userId,
         date: new Date().getTime()
     };
