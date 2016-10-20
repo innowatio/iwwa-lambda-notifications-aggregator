@@ -6,7 +6,7 @@ import {getMongoClient} from "./services/mongodb";
 import upsertNotifications from "./steps/upsert-notifications";
 
 export default async function pipeline (event) {
-    log.info("Received notifications event", event);
+    log.info(event, "Received notifications event");
     var element = event.data.element;
     const id = event.data.id;
     if (!element) {
